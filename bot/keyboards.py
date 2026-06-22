@@ -1,18 +1,10 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+from bot.content import BUTTONS
 
 def hello_message_keyboard():
     builder = InlineKeyboardBuilder()
 
-    blocks = {
-        "about":"Про меня", 
-        "goal":"Моя цель", 
-        "path":"Как я пришел в IT",
-        "mentor":"Мой ментор",
-        "progress":"Точка А -> Точка Б",
-        "hobbies":"Хобби и интересы",
-        "porjects":"Мои лучшие работы",
-        "github":"Ссылка на GitHub"
-    }
+    blocks = BUTTONS
 
     callback = [
         "about",
