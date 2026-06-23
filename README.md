@@ -35,9 +35,8 @@
 | Веб-сервер | FastAPI |
 | ASGI-сервер | Uvicorn |
 | HTML-шаблоны | Jinja2 |
-| Потоковая передача | Server-Sent Events (SSE) |
 | Очередь сообщений | asyncio.Queue |
-| CLI | argparse / sys.argv |
+| CLI | sys.argv |
 
 ---
 
@@ -74,6 +73,8 @@
 Создайте виртуальное окружение и установите зависимости.
 
 ```bash
+git clone https://github.com/asm1-cpp/about-me-bot.git
+
 python3 -m venv .venv
 
 source .venv/bin/activate
@@ -88,6 +89,8 @@ pip install -r requirements.txt
 Для **zsh** и **bash** используются одинаковые команды.
 
 ```bash
+git clone https://github.com/asm1-cpp/about-me-bot.git
+
 python3 -m venv .venv
 
 source .venv/bin/activate
@@ -98,6 +101,12 @@ pip install -r requirements.txt
 ---
 
 ## Windows
+
+Клонируй проект.
+
+```powershell
+git clone https://github.com/asm1-cpp/about-me-bot.git
+```
 
 Создайте виртуальное окружение.
 
