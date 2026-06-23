@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Arch Terminal - INFO LOGS</title>
+    <style>
+        body { background-color: #1a1b26; margin: 0; padding: 20px; }
+        .terminal {
+            background-color: #1a1b26;
+            color: #73daca;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            padding: 15px;
+            border: 1px solid #24283b;
+            border-radius: 5px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        .header { color: #565f89; border-bottom: 1px solid #24283b; padding-bottom: 5px; margin-bottom: 10px; }
+        .log-item { margin-bottom: 4px; }
+        .level { background: rgba(115, 218, 202, 0.15); font-weight: bold; padding: 0 4px; }
+        .time { color: #565f89; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="header">[root@arch-server ~]# tail -f bot.log | grep INFO</div>
+        <div id="logs"></div>
+    </div>
+
+    <script>
+        const eventSource = new EventSource('/stream/info');
+        const logsContainer = document.getElementById('logs');
+
+        eventSource.onmessage = function(event) {
+            const div = document.createElement('div');
+            div.className = 'log-item';
+            
+            const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            div.innerHTML = `<span class="level">[INFO]</span> <span class="time">[${now}]</span> <span>${event.data}</span>`;
+            
+            logsContainer.appendChild(div);
+            window.scrollTo(0, document.body.scrollHeight);
+        };
+    </script>
+</body>
+</html>

@@ -133,3 +133,6 @@ marimo/_lsp/
 __marimo__/
 
 .streamlit/secrets.toml
+
+mylog.log
+context.json

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Arch Linux - Bot Logs</title>
+    <style>
+        body { background-color: #1a1b26; margin: 0; padding: 20px; font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 15px; }
+        .tab-btn {
+            background-color: #24283b;
+            color: #a9b1d6;
+            border: 1px solid #414868;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { background-color: #414868; }
+        
+        /* Цвета активных кнопок в стиле Tokyo Night */
+        .tab-btn.active[data-level="info"] { background-color: #73daca; color: #1a1b26; font-weight: bold; }
+        .tab-btn.active[data-level="debug"] { background-color: #7aa2f7; color: #1a1b26; font-weight: bold; }
+        .tab-btn.active[data-level="error"] { background-color: #f7768e; color: #1a1b26; font-weight: bold; }
+
+        /* Окно терминала */
+        .terminal {
+            background-color: #1a1b26;
+            padding: 15px;
+            border: 1px solid #24283b;
+            border-radius: 5px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        .header { color: #565f89; border-bottom: 1px solid #24283b; padding-bottom: 5px; margin-bottom: 10px; }
+        .log-item { margin-bottom: 4px; }
+        
+        /* Динамические цвета для логов */
+        .terminal.info { color: #73daca; }
+        .terminal.debug { color: #7aa2f7; }
+        .terminal.error { color: #f7768e; }
+    </style>
+</head>
+<body>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-level="info">INFO</button>
+        <button class="tab-btn" data-level="debug">DEBUG</button>
+        <button class="tab-btn" data-level="error">ERROR</button>
+    </div>
+
+    <div id="terminal" class="terminal info">
+        <div id="terminal-header" class="header">[root@arch-server ~]# tail -f bot.log | grep INFO</div>
+        <div id="logs"></div>
+    </div>
+
+    <script>
+        let currentSource = null;
+        const logsContainer = document.getElementById('logs');
+        const terminal = document.getElementById('terminal');
+        const header = document.getElementById('terminal-header');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        function connectToLogStream(level) {
+            if (currentSource) {
+                currentSource.close();
+            }
+
+            logsContainer.innerHTML = '';
+            
+            terminal.className = `terminal ${level}`;
+            header.innerText = `[root@arch-server ~]# tail -f bot.log | grep ${level.toUpperCase()}`;
+
+            currentSource = new EventSource(`/stream/${level}`);
+            
+            currentSource.onmessage = function(event) {
+                const div = document.createElement('div');
+                div.className = 'log-item';
+                div.innerText = event.data;
+                logsContainer.appendChild(div);
+                window.scrollTo(0, document.body.scrollHeight);
+            };
+        }
+
+       buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const level = btn.getAttribute('data-level');
+                connectToLogStream(level);
+            });
+        });
+
+
+        connectToLogStream('info');
+    </script>
+</body>
+</html>
