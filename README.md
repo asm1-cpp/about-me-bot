@@ -25,7 +25,7 @@
 <p align="center">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="56" alt="Python"/>
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="56" alt="FastAPI"/>
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jinja2/jinja2-original.svg" width="56" alt="Jinja2"/>
+    <img src="https://jinja.palletsprojects.com/en/stable/_images/jinja-name.svg" width="56" alt="Jinja2"/>
 </p>
 
 | Компонент | Используется |
