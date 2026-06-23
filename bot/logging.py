@@ -25,7 +25,15 @@ def starting():
 
     try:
         if arg_1 == '--debug':
-            logging.basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=logging.DEBUG, filename=u'bot_log.log', force=True)
+            logging.basicConfig(
+                format=u'%(levelname)-8s [%(asctime)s] %(message)s', 
+                level=logging.DEBUG, 
+                force=True,
+                handlers=[
+                    logging.FileHandler("bot_log.log"),
+                    logging.StreamHandler(sys.stdout)
+                ]
+            )
             logging.info("Дебаг-режим включен.")
             if arg_2 != "NULL":
                 if arg_2 == '--token':
@@ -62,7 +70,15 @@ def starting():
                 logging.info("Ваш токен присвоен к боту")
                 if arg_3 != "NULL":
                     if arg_3 == '--debug':
-                        logging.basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=logging.DEBUG, filename=u'bot_log.log', force=True)
+                        logging.basicConfig(
+                            format=u'%(levelname)-8s [%(asctime)s] %(message)s', 
+                            level=logging.DEBUG, 
+                            force=True,
+                            handlers=[
+                                logging.FileHandler("bot_log.log"),
+                                logging.StreamHandler(sys.stdout)
+                            ]
+                        )
                         logging.info("Дебаг-режим включен.")
                         if arg_4 != "NULL":
                             if arg_4 == '--site':
@@ -74,7 +90,15 @@ def starting():
                         logging.info("Сайт запущен вместе с ботом по адресу 127.0.0.1:8000")
                         if arg_4 != "NULL":
                             if arg_4 =="--debug":
-                                logging.basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=logging.DEBUG, filename=u'bot_log.log', force=True)
+                                logging.basicConfig(
+                                    format=u'%(levelname)-8s [%(asctime)s] %(message)s', 
+                                    level=logging.DEBUG, 
+                                    force=True,
+                                    handlers=[
+                                        logging.FileHandler("bot_log.log"),
+                                        logging.StreamHandler(sys.stdout)
+                                    ]
+                                )
                                 logging.info("Дебаг-режим включен.")
                             else:
                                 logging.error("ERROR: Такого флага нету или ты его уже использовал")
@@ -95,7 +119,15 @@ def starting():
                         logging.info("Ваш токен присвоен к боту")
                         if arg_4 != "NULL":
                             if arg_4 == '--debug':
-                                logging.basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=logging.DEBUG, filename=u'bot_log.log', force=True)
+                                logging.basicConfig(
+                                    format=u'%(levelname)-8s [%(asctime)s] %(message)s', 
+                                    level=logging.DEBUG, 
+                                    force=True,
+                                    handlers=[
+                                        logging.FileHandler("bot_log.log"),
+                                        logging.StreamHandler(sys.stdout)
+                                    ]
+                                )
                                 logging.info("Дебаг-режим включен.")
                         else:
                             logging.error("ERROR: Такого флага нету или ты его уже использовал")
@@ -104,7 +136,15 @@ def starting():
                         logging.error("ERROR: Где токен?")
                         exit()
                 elif arg_2 == '--debug':
-                    logging.basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=logging.DEBUG, filename=u'bot_log.log', force=True)
+                    logging.basicConfig(
+                        format=u'%(levelname)-8s [%(asctime)s] %(message)s', 
+                        level=logging.DEBUG, 
+                        force=True,
+                        handlers=[
+                            logging.FileHandler("bot_log.log"),
+                            logging.StreamHandler(sys.stdout)
+                        ]
+                    )
                     logging.info("Дебаг-режим включен.")
                     if arg_3 != "NULL":
                         if arg_3 == '--token':
