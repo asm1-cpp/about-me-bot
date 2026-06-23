@@ -1,4 +1,3 @@
-````markdown
 # AboutMe AI Bot & Real-Time Log Server
 
 <p align="center">
