@@ -37,3 +37,8 @@ def back_to_hello_message_keyboard():
     builder = InlineKeyboardBuilder()
     builder.button(text = "Вернуться в главное меню", callback_data = "back")
     return builder.as_markup()
+
+def skip_comment_keyboard():
+    builder = InlineKeyboardBuilder()
+    builder.button(text="Пропустить ➡️", callback_data="skip_comment")
+    return builder.as_markup()
