@@ -67,7 +67,6 @@ def starting():
         if '--debug' in sys.argv:
             logging.info("Дебаг-режим включен.")
 
-        # Разбор токенов и сайта (твоя оригинальная логика без изменений)
         if arg_1 == '--debug':
             if arg_2 != "NULL" and arg_2 == '--token':
                 config.TOKEN = arg_3
