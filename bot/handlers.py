@@ -8,6 +8,7 @@ from bot.content import HELLO_MESSAGE, ABOUT, GOAL, PATH, MENTOR, PROGRESS, HOBB
 from bot.keyboards import hello_message_keyboard, back_to_hello_message_keyboard, skip_comment_keyboard
 from bot.states import BetterCallAdill
 from bot.ai_client import get_ai_response
+import config
 
 router = Router()
 
